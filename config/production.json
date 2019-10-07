@@ -1,0 +1,13 @@
+{
+    "nodejs": {
+        "host": "localhost",
+        "port": 2541
+    },
+    "mongodb": {
+        "url": "mongodb.devpantip.com",
+        "port": 27017,
+        "dbname": "pantip_month10",
+        "username": "dev",
+        "password": "4XX7rfa>j}"
+    }
+}
