@@ -1,5 +1,6 @@
 // Libs
 import { mongoConnection } from '../../libs/mongoConnection'
+
 // Middlewares
 import { validatorResult, errorFormat } from '../middlewares/validatorResult'
 

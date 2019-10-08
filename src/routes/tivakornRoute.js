@@ -13,6 +13,8 @@ router.get('/', (req, res) => {
     res.json({ success: true })
 })
 
+router.get('/find', [], [])
+
 router.get('/test', addValidator, testModel)
 
 export default router
