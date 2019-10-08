@@ -4,15 +4,15 @@ import { MongoClient } from 'mongodb'
 
 const { url, port, dbname, username, password } = mongodb
 
-export const mongoConnection = async (callback, errorCallback = null) => {
+const mongoConnection = async (callback, errorCallback = null) => {
+
     let conn = null
 
     try {
-
         // connection is open once
         if (typeof username === 'undefined' || typeof password === 'undefined') {
             // without authentication
-            conn = await MongoClient.connect(`mongodb://${url}:${port}`, { useNewUrlParser: true, useUnifiedTopology: true })
+            conn = await MongoClient.connect(`mongodb://${url}:${port}`, { useNewUrlParser: true, useUnifiedTopology:true })
         } else {
             // authenticate DB
             conn = await MongoClient.connect(`mongodb://${username}:${password}@${url}:${port}/${dbname}`, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -22,11 +22,9 @@ export const mongoConnection = async (callback, errorCallback = null) => {
     } catch (e) {
         // eslint-disable-next-line no-console
         console.log('Database connection error: ', e)
-
         if (errorCallback !== null) {
             return errorCallback(e)
         }
-
     } finally {
         if (conn !== null) {
             conn.close()
@@ -36,3 +34,5 @@ export const mongoConnection = async (callback, errorCallback = null) => {
 
     return null
 }
+
+export default mongoConnection
