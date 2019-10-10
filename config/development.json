@@ -4,10 +4,8 @@
         "port": 3000
     },
     "mongodb": {
-        "url": "mongodb.devpantip.com",
+        "url": "localhost",
         "port": 27017,
-        "dbname": "pantip_month10",
-        "username": "dev",
-        "password": "4XX7rfa>j}"
+        "dbname": "TestGO"
     }
 }

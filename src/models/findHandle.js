@@ -1,22 +1,22 @@
 // Libs
-import { mongoConnection } from '../../libs/mongoConnection'
+import mongoConnection from '../../libs/mongoConnection'
 
 // middlewares
 import { validatorResult, errorFormat } from '../middlewares/validatorResult'
 
 const connectDB = async (name) => {
-    return await mongoConnection(async (db) => {
+    return mongoConnection(async (db) => {
 
         let where = {
             name: name
         }
 
-        let dataFormDB = await db.collection('menbers').find(where)
+        let dataFormDB = await db.collection('menbers').find(where).toArray()
 
         return {
-            success: true,
-            data: dataFormDB
+            dataFormDB
         }
+
     })
 }
 
@@ -29,7 +29,16 @@ export const findHandle = async (req, res) => {
 
     const { name = '' } = req.query
 
-    const data = await connectDB(name)
+    const { dataFormDB } = await connectDB(name)
 
-    res.json(data)
+    if (!dataFormDB) {
+        return res.json({ success: false })
+    }
+
+    const result = {
+        success: true,
+        data: dataFormDB
+    }
+
+    return res.json(result)
 }
